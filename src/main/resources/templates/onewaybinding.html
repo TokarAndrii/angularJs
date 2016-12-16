@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" ng-app="oneWayBindingApp">
+<head>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script>
+        var app = angular.module("oneWayBindingApp", []);
+
+        app.controller("oneWayBindingAppCtrl", function ($scope) {
+            $scope.items = [
+                {name: "Item1", value: "Value1"},
+                {name: "Item2", value: "Value2"},
+                {name: "Item3", value: "Value3"}];
+        });
+
+
+    </script>
+</head>
+<body>
+
+<!--div with ng-controllre derectives define scope of controller doing area-->
+<div ng-controller="oneWayBindingAppCtrl">
+    <!-- {{ }} - однонаправленная привязка от модели к представлению -->
+    <!--ng-non-bindable - указывает, что содержимое элемента не должно компилироваться и в нем не должна происходить привязка данных-->
+    <div>There are itmes: {{items.length}}. Lenght taken from items by expression <span
+            ng-non-bindable="{{}}">{{}}</span></div>
+
+    <!-- ng-bind - директива выполняющая замену HTML содержимого элемента на значение полученное через установленное выражение привязки -->
+    <div>There are items: <span ng-bind="items.length"></span>. Lenght taken from items by ng-bind</div>
+
+    <!-- ng-bind-template - директива, которая замещает содержимое элемента данными полученными в результате выполнения выражения привязки,
+    в отличии от ng-bind директива ng-bind-template может содержать несколько {{ }} выражений -->
+
+    <div ng-bind-template="First item is: {{items[0].name}}  and value: {{items[1].value}}"></div>
+
+</div>
+
+</body>
+</html>

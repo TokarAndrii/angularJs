@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" ng-app="showApp">
+<head>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script>
+
+        var app = angular.module("showApp", []);
+        app.controller("showAppCtrl", function ($scope) {
+            $scope.hideElem1 = true;
+            $scope.hideElem2 = false;
+            $scope.hideElem3 = false;
+
+
+        })
+
+    </script>
+
+    <script>
+        var app = angular.module("hideApp", []);
+
+        app.controller("hideAppCtrl", function ($scope) {
+            $scope.showElem1 = false;
+            $scope.showElem2 = false;
+            $scope.showElem3 = false;
+        });
+
+    </script>
+
+    <style>
+        div {
+            display: inline-block;
+            border: 1px solid gray;
+            border-radius: 3px;
+            margin: 14px;
+            padding: 30px;
+        }
+
+        #d1 {
+            background-color: lightgreen;
+        }
+
+        #d2 {
+            background-color: lightblue;
+        }
+
+        #d3 {
+            background-color: lightcoral;
+        }
+    </style>
+
+
+</head>
+<body style="padding-left: 10px;padding-top: 10px">
+
+<!--ng-show & ng-hide – отображает или прячет элемент в соответствии с выражением с помощью display:none. -->
+
+<div ng-controller="showAppCtrl">
+    <div>
+        <input type="checkbox" ng-model="hideElem1"/> Hide Element 1<br/>
+        <input type="checkbox" ng-model="hideElem2"/> Hide Element 2<br/>
+        <input type="checkbox" ng-model="hideElem3"/> Hide Element 3
+    </div>
+    <div id="d1" ng-hide="hideElem1">Element 1</div>
+    <div id="d2" ng-hide="hideElem2">Element 2</div>
+    <div id="d3" ng-hide="hideElem3">Element 3</div>
+</div>
+
+
+</body>
+</html>

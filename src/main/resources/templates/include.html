@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"  ng-app="includeApp">
+<head>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/includeApp.js}"></script>
+
+
+</head>
+<body ng-controller="includeAppCtrl">
+
+Select View: <select ng-model="employeeView">
+    <option value="employeetable.html">Table</option>
+    <option value="employeelist.html">List</option>
+</select>
+
+<div ng-include="employeeView"></div>
+
+</body>
+</html>

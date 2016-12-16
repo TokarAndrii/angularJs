@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" ng-app="switchApp">
+<head>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script th:src="@{/js/switchApp.js}"></script>
+
+</head>
+<body ng-controller="switchAppCtrl">
+
+<br/>
+
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+
+                <label style="width: 200px;margin-left: 10px" class="col-sm-1 control-label">Шаблон
+                    визуализации:</label>
+                <select style="width: 700px" class="form-control" ng-model="mode"
+                        ng-options="item.display for item in options track by item.value">
+                </select>
+            </div>
+
+        </div>
+    </form>
+
+
+    <!-- Шаблон <select ng-model="mode" ng-options="item.display for item in options track by item.value"></select>-->
+
+    <!-- ng-switch - директива используется для переключения структуры DOM на основе выражения. В отличии от ng-include данная
+         директива не прозводит загрузку с сервера данных, а делает видимым один из элементов, который есть в DOM -->
+
+    <div ng-switch="mode.value" style="margin-top:20px;">
+
+        <table class="table" ng-switch-when="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="item in items">
+                <td>{{item.name}}</td>
+                <td>{{item.value}}</td>
+            </tr>
+        </table>
+
+        <ul class="list-group" ng-switch-when="list">
+            <li ng-repeat="item in items" class="list-group-item list-group-item-info">{{item.name}}:{{item.value}}</li>
+        </ul>
+
+        <ol class="list-group" ng-switch-when="budges">
+            <li ng-repeat="item in items" class="list-group-item">
+                <span class="badge">{{item.value}}</span>
+                {{item.name}}
+            </li>
+        </ol>
+    </div>
+</div>
+
+</body>
+</html>

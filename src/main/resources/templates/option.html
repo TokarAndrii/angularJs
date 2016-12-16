@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <script>
+        var app = angular.module("optionsApp", []);
+        app.controller("optionAppCtrl", function ($scope) {
+            $scope.items = ['item 1', 'item 2', 'item 3'];
+            $scope.selected = "item 1";
+        })
+    </script>
+
+
+</head>
+<body style="padding-left: 20px;padding-top: 10px">
+
+<div ng-app="optionsApp" ng-controller="optionAppCtrl">
+    <!--ng-options - директива используется для динамической генерации элементов <option> для <select>.
+        Во многих случаях для создания <option> можно использовать ng-repeate.
+        ng-options предоставляет более эффективный способ создания элементов, который потребляет меньшее количество памяти и дает большую производительность
+
+        item for item in items - значение_для_текста for элемент in коллекция
+        использовать значение item как текст элемента при этом извлекать item из коллекции items
+        -->
+    <select ng-model="selected" ng-options="item for item in items"></select>
+
+</div>
+
+
+</body>
+</html>

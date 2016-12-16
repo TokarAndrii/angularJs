@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" ng-app="twoWayBindingApp">
+<head>
+
+    <!--
+       two-way data binding - привязка данных, которая изменения в двух направлениях. Если меняется модель,
+       то происходят изменения в пользовательском интерфейсе,
+       если новые данные вносяться в элементы управляния, то обновляются свойства модели.
+   -->
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script>
+        var app = angular.module("twoWayBindingApp", []);
+
+        app.controller("twoWayBindingAppCtrl", function ($scope) {
+            $scope.items = [
+                {name: "Item1", value: "Value1"},
+                {name: "Item2", value: "Value2"},
+                {name: "Item3", value: "Value3"}];
+        });
+
+
+    </script>
+</head>
+<body ng-controller="twoWayBindingAppCtrl">
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Value</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in items">
+        <td style="width: 500px">{{item.name}}</td>
+        <td style="width: 500px">{{item.value}}</td>
+    </tr>
+    </tbody>
+</table>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-1 control-label">one way binding:</label>
+        <div class="col-sm-10">
+            <input style="width: 300px" type="text" name="name" id="inputID" class="form-control"
+                   value="{{items[0].name}}"/>
+        </div>
+
+    </div>
+</form>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-1 control-label">two way binding:</label>
+        <div class="col-sm-10">
+            <!-- При смене значения в поле ввода будет изменено значения элемента по индексу 1 в массиве items -->
+            <input style="width: 300px" name="name1" id="inputID1" class="form-control" ng-model="items[1].name"/>
+        </div>
+
+    </div>
+</form>
+
+
+</body>
+</html>
