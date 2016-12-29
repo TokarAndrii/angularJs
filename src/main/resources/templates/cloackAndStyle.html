@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"  ng-app="cloackApp">
+<head>
+
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <script type="text/javascript" th:src="@{/js/cloack.js}"></script>
+
+
+</head>
+<body ng-controller="cloackAppCtrl">
+<!-- ng-cloak - директива, которая предотвращает отображение шаблонов {{}} до того, как приложение будет полностью загружено.
+         Директива может быть присвоена элементу body, но рекомендуется применять эту директиву несколько раз для небольших частей страницы.-->
+<h3 ng-cloak="">{{firstName}} {{lastName}}</h3>
+<p ng-cloak="">age: {{age}}</p>
+<p>position: {{position}}</p> <!-- Элемент будет отображаться до того, как завершиться построение DOM -->
+<script>alert("loading.....")</script>
+
+<div class="container" ng-controller="styleCtrl">
+
+    <!--ng-style - позволяет установить CSS стили на определенный элемент-->
+
+    <div ng-style="styleObj">Test</div>
+
+</div>
+
+</body>
+</html>
